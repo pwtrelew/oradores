@@ -1,159 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oradores</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0e0c2d;
-      color: white;
-      line-height: 1.6;
-      padding-bottom: 80px;
-    }
-
-    header {
-      background-color: #0e0c2d;
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-      position: relative;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: #c2f750;
-      margin-bottom: 0.5rem;
-    }
-
-    .btn-superior {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background-color: #c2f750;
-      color: #0e0c2d;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      font-weight: bold;
-      border-radius: 20px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    main {
-      max-width: 700px;
-      margin: auto;
-      padding: 1rem;
-    }
-
-    .cuadro {
-      background-color: #ffaa2b;
-      border-radius: 20px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1.5rem;
-      color: #0e0c2d;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    }
-
-    .cuadro p {
-      margin: 0.5rem 0;
-    }
-
-    .destacado {
-      color: #ffaa2b;
-      font-weight: bold;
-    }
-
-    .orador strong {
-      color: #0e0c2d;
-    }
-
-    .orador {
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-style: italic;
-    }
-
-    .btn-flotante {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #c2f750;
-      color: #0e0c2d;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: background-color 0.3s;
-      text-decoration: none;
-    }
-
-    .btn-flotante:hover {
-      background-color: #d9ff6f;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oradores</title>
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font and body background */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>Oradores</h1>
-    <button class="btn-superior">Cong. Norte</button>
-  </header>
+<body class="bg-[#0e0c2d] text-white leading-relaxed pb-20">
+    <!-- Header Section -->
+    <header class="bg-[#0e0c2d] text-center py-12 px-4 relative md:py-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#c2f750] mb-2">Oradores</h1>
+        <!-- Top right button, now a link -->
+        <a href="https://maps.app.goo.gl/ENAcMhcTuPpt3moNA" target="_blank" class="absolute top-4 right-4 bg-[#c2f750] text-[#0e0c2d] border-none py-2 px-4 text-sm font-bold rounded-full shadow-lg cursor-pointer hover:bg-[#d9ff6f] transition-colors duration-300 no-underline">
+            Cong. Norte
+        </a>
+    </header>
 
-  <main>
-    <p style="margin-bottom: 0.1rem;"><span class="destacado">Horario de la Reunión:</span> Sábado 19hs</p>
-<p style="margin-bottom: 1.5rem;"><span class="destacado">Dirección:</span> Roque González 369</p>
-    <div class="cuadro">
-      <p><strong>Darío Ferrin (ANC):</strong><br>
-      32 - 40 - 45 - 54 - 84 - 103 - 105 - 118 - 151 - 154 - 162 - 163 - 192</p>
-    </div>
+    <!-- Main Content Section -->
+    <main class="max-w-3xl mx-auto px-4">
+        <!-- Meeting Info -->
+        <p class="mb-1"><span class="text-[#ffaa2b] font-bold">Horario de la Reunión:</span> Sábado 19hs</p>
+        <p class="mb-6"><span class="text-[#ffaa2b] font-bold">Dirección:</span> Roque González 369</p>
 
-    <div class="cuadro">
-      <p><strong>Pablo Ferrin (ANC):</strong><br>
-      191 - 4</p>
-    </div>
+        <!-- Speaker Cards Container -->
+        <div class="space-y-6">
+            <!-- Speaker Card 1 -->
+            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
+                <p class="my-2"><strong>Darío Ferrin (ANC):</strong><br>
+                32 - 40 - 45 - 54 - 84 - 103 - 105 - 118 - 151 - 154 - 162 - 163 - 192</p>
+            </div>
 
-    <div class="cuadro">
-      <p><strong>Tomás Zuñiga (ANC):</strong><br>
-      2 - 3 - 65 - 71 - 87 - 182 - 191 - 192 - 193</p>
-    </div>
+            <!-- Speaker Card 2 -->
+            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
+                <p class="my-2"><strong>Pablo Ferrin (ANC):</strong><br>
+                191 - 4</p>
+            </div>
 
-    <div class="cuadro">
-      <p><strong>Victor Jaramillo (ANC):</strong><br>
-      76 - 185 - 188 - 123 - 74</p>
-    </div>
+            <!-- Speaker Card 5 -->
+            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
+                <p class="my-2"><strong>Norman Saavedra (ANC):</strong><br>
+                15</p>
+            </div>
 
-    <div class="cuadro">
-      <p><strong>Norman Saavedra (ANC):</strong><br>
-      15</p>
-    </div>
+            <!-- Speaker Card 6 -->
+            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
+                <p class="my-2"><strong>Jorge Rapiman (ANC):</strong><br>
+                32 - 113 - 152</p>
+            </div>
 
-    <div class="cuadro">
-      <p><strong>Jorge Rapiman (ANC):</strong><br>
-      32 - 113 - 152</p>
-    </div>
+            <!-- Speaker Card 7 -->
+            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
+                <p class="my-2"><strong>Esteban García (SM):</strong><br>
+                4 - 8 - 113 - 189</p>
+            </div>
+        </div>
+    </main>
 
-    <div class="cuadro">
-      <p><strong>Esteban García (SM):</strong><br>
-      4 - 8 - 113 - 166 - 189</p>
-    </div>
-
-    <footer>
-      <p>Para pasar imágenes comunicarse con:<br>
-      <strong><em>Marcelo Mugueta</em></strong></p>
+    <!-- Footer Section -->
+    <footer class="text-left py-8 px-4 italic">
+        <p>Para pasar imágenes comunicarse con:<br>
+        <strong class="font-bold">Marcelo Mugueta</strong></p>
     </footer>
-  </main>
 
-  <a class="btn-flotante" href="https://wa.me/5492804977396" target="_blank">
-    Quiero pasar imágenes
-  </a>
+    <!-- Floating Action Button -->
+    <a class="fixed bottom-5 right-5 bg-[#c2f750] text-[#0e0c2d] border-none py-3 px-6 text-base font-bold rounded-full shadow-xl transition-colors duration-300 hover:bg-[#d9ff6f] no-underline"
+       href="https://wa.me/5492804977396" target="_blank">
+        Quiero pasar imágenes
+    </a>
 </body>
 </html>
