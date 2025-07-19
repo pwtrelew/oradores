@@ -9,23 +9,24 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for Poppins font and body background */
+        /* Custom styles for Poppins font */
         body {
-            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
 <body class="bg-[#0e0c2d] text-white leading-relaxed pb-20">
+
     <!-- Header Section -->
-    <header class="bg-[#0e0c2d] text-center py-12 px-4 relative md:py-16">
+    <header class="bg-[#0e0c2d] text-center pt-24 pb-12 px-4 relative md:pt-32 md:pb-16">
         <h1 class="text-4xl md:text-5xl font-bold text-[#c2f750] mb-2">Oradores</h1>
-        <!-- Top right button, now a link with a location icon -->
+        <!-- Top right button for location -->
         <a href="https://maps.app.goo.gl/ENAcMhcTuPpt3moNA" target="_blank" class="absolute top-4 right-4 bg-[#c2f750] text-[#0e0c2d] border-none py-2 px-4 text-sm font-bold rounded-full shadow-lg cursor-pointer hover:bg-[#d9ff6f] transition-colors duration-300 no-underline flex items-center space-x-1">
-            <!-- Location Icon (SVG) - Custom icon resembling the provided image -->
+            <!-- Location Icon (SVG) -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
             </svg>
-            Cong. Norte
+            <span>Cong. Norte</span>
         </a>
     </header>
 
@@ -36,49 +37,84 @@
         <p class="mb-6"><span class="text-[#ffaa2b] font-bold">Dirección:</span> Roque González 369</p>
 
         <!-- Speaker Cards Container -->
-        <div class="space-y-6">
-            <!-- Speaker Card 1 -->
-            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
-                <p class="my-2"><strong>Darío Ferrin (ANC):</strong><br>
-                32 - 40 - 45 - 54 - 84 - 103 - 105 - 118 - 151 - 154 - 162 - 163 - 192</p>
-            </div>
-
-            <!-- Speaker Card 2 -->
-            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
-                <p class="my-2"><strong>Pablo Ferrin (ANC):</strong><br>
-                191 - 4</p>
-            </div>
-
-            <!-- Speaker Card 5 -->
-            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
-                <p class="my-2"><strong>Norman Saavedra (ANC):</strong><br>
-                15</p>
-            </div>
-
-            <!-- Speaker Card 6 -->
-            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
-                <p class="my-2"><strong>Jorge Rapiman (ANC):</strong><br>
-                32 - 113 - 152</p>
-            </div>
-
-            <!-- Speaker Card 7 -->
-            <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
-                <p class="my-2"><strong>Esteban García (SM):</strong><br>
-                4 - 8 - 113 - 189</p>
-            </div>
+        <!-- This div will be populated dynamically by the script below -->
+        <div id="speaker-container" class="space-y-6">
+            <!-- Speaker cards will be inserted here -->
         </div>
     </main>
 
     <!-- Footer Section -->
-    <footer class="text-left py-8 px-4 italic">
-        <p>Para pasar imágenes comunicarse con:<br>
-        <strong class="font-bold">Marcelo Mugueta</strong></p>
+    <footer class="text-center py-8 px-4 italic">
+        <p class="mb-4">Para pasar imágenes comunicarse con:</p>
+        <!-- WhatsApp contact button with added vertical margin (my-4) -->
+        <a class="inline-flex items-center justify-center space-x-2 bg-[#128C7E] text-white border-none py-3 px-6 text-base font-bold rounded-full shadow-md transition-colors duration-300 hover:bg-[#075E54] no-underline my-4"
+           href="https://wa.me/5492804977396" target="_blank">
+            <!-- Official WhatsApp Icon (SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M19.11 4.9C17.22 3 14.72 2 12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.45 1.32 4.95L2 22l5.27-1.38c1.45.79 3.08 1.21 4.73 1.21h.01c5.52 0 10-4.48 10-10c0-2.72-1-5.22-2.89-7.1zM12 20.25c-1.46 0-2.87-.39-4.12-1.1L4.84 20l.82-3.04c-.8-1.29-1.26-2.78-1.26-4.31c0-4.54 3.69-8.23 8.24-8.23c2.2 0 4.23.86 5.82 2.45c1.59 1.59 2.45 3.62 2.45 5.82c-.01 4.55-3.7 8.24-8.25 8.24zM16.47 14.48c-.19-.1-1.14-.56-1.32-.63c-.18-.06-.31-.1-.44.1c-.13.2-.5.63-.61.75c-.12.13-.23.14-.43.05c-.19-.09-1.03-.38-1.96-1.21c-.73-.64-1.22-1.43-1.35-1.67c-.13-.24-.01-.37.09-.48c.09-.1.2-.25.3-.34c.1-.09.13-.16.2-.27c.06-.11.03-.21-.02-.31c-.05-.1-.44-1.06-.6-1.45c-.16-.39-.32-.34-.44-.34c-.11 0-.25 0-.38 0c-.13 0-.34.05-.52.24c-.18.2-.69.68-.69 1.65c0 .97.71 1.92.81 2.06c.1.15 1.39 2.12 3.37 2.96c.49.21.88.33 1.18.43c.47.15.89.13 1.22.08c.37-.06 1.14-.46 1.3-.91c.16-.44.16-.82.11-.91c-.05-.08-.18-.13-.37-.23z"/>
+            </svg>
+            <span>Marcelo Mugueta</span>
+        </a>
     </footer>
 
-    <!-- Floating Action Button -->
-    <a class="fixed bottom-5 right-5 bg-[#c2f750] text-[#0e0c2d] border-none py-3 px-6 text-base font-bold rounded-full shadow-xl transition-colors duration-300 hover:bg-[#d9ff6f] no-underline"
-       href="https://wa.me/5492804977396" target="_blank">
-        Quiero pasar imágenes
-    </a>
+    <script>
+        // --- Speaker Data ---
+        // All speaker information is stored in this array of objects.
+        // To add, edit, or remove a speaker, you only need to change this section.
+        const speakers = [
+            {
+                name: "Darío Ferrin",
+                group: "ANC",
+                numbers: [32, 40, 45, 54, 84, 103, 105, 118, 151, 154, 162, 163, 192]
+            },
+            {
+                name: "Pablo Ferrin",
+                group: "ANC",
+                numbers: [191, 4]
+            },
+            {
+                name: "Norman Saavedra",
+                group: "ANC",
+                numbers: [15]
+            },
+            {
+                name: "Jorge Rapiman",
+                group: "ANC",
+                numbers: [32, 113, 152]
+            },
+            {
+                name: "Esteban García",
+                group: "SM",
+                numbers: [4, 8, 113, 189]
+            }
+        ];
+
+        // --- Dynamic Content Generation ---
+        // This function runs when the page loads.
+        window.onload = function() {
+            // Get the container element where speaker cards will be inserted.
+            const container = document.getElementById('speaker-container');
+
+            // Check if the container exists to avoid errors.
+            if (container) {
+                // Loop through each speaker in the 'speakers' array.
+                speakers.forEach(speaker => {
+                    // Create the HTML for the speaker card using a template literal.
+                    // This makes it easy to read and construct the HTML.
+                    const speakerCardHTML = `
+                        <div class="bg-[#ffaa2b] rounded-2xl p-6 text-[#0e0c2d] shadow-lg">
+                            <p class="my-2">
+                                <strong>${speaker.name} (${speaker.group}):</strong><br>
+                                ${speaker.numbers.join(' - ')}
+                            </p>
+                        </div>
+                    `;
+                    // Insert the newly created HTML into the container.
+                    container.innerHTML += speakerCardHTML;
+                });
+            }
+        };
+    </script>
+
 </body>
 </html>
