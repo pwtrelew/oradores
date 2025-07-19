@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oradores</title>
-    <!-- Inter font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for Inter font and body background */
+        /* Custom styles for Poppins font and body background */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
         }
     </style>
 </head>
@@ -19,8 +19,12 @@
     <!-- Header Section -->
     <header class="bg-[#0e0c2d] text-center py-12 px-4 relative md:py-16">
         <h1 class="text-4xl md:text-5xl font-bold text-[#c2f750] mb-2">Oradores</h1>
-        <!-- Top right button, now a link -->
-        <a href="https://maps.app.goo.gl/ENAcMhcTuPpt3moNA" target="_blank" class="absolute top-4 right-4 bg-[#c2f750] text-[#0e0c2d] border-none py-2 px-4 text-sm font-bold rounded-full shadow-lg cursor-pointer hover:bg-[#d9ff6f] transition-colors duration-300 no-underline">
+        <!-- Top right button, now a link with a location icon -->
+        <a href="https://maps.app.goo.gl/ENAcMhcTuPpt3moNA" target="_blank" class="absolute top-4 right-4 bg-[#c2f750] text-[#0e0c2d] border-none py-2 px-4 text-sm font-bold rounded-full shadow-lg cursor-pointer hover:bg-[#d9ff6f] transition-colors duration-300 no-underline flex items-center space-x-1">
+            <!-- Location Icon (SVG) - Custom icon resembling the provided image -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+            </svg>
             Cong. Norte
         </a>
     </header>
