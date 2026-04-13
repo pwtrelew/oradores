@@ -21,10 +21,10 @@
     <header class="text-center pt-20 pb-12 px-4 relative max-w-4xl mx-auto">
         <!-- Botón superior derecho -->
         <div class="absolute top-6 right-4 md:right-0">
-            <a href="https://maps.app.goo.gl/ENAcMhcTuPpt3moNA" target="_blank" class="group flex items-center space-x-2 bg-slate-800/80 backdrop-blur-md border border-slate-700/50 text-slate-200 py-2 px-4 rounded-full shadow-lg hover:bg-amber-500 hover:text-slate-900 hover:border-amber-400 transition-all duration-300 text-sm font-medium">
+            <div class="flex items-center space-x-2 bg-slate-800/80 backdrop-blur-md border border-slate-700/50 text-slate-200 py-2 px-4 rounded-full shadow-lg text-sm font-medium cursor-default">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 <span>Cong. Norte</span>
-            </a>
+            </div>
         </div>
         
         <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">Oradores</h1>
@@ -33,14 +33,16 @@
     <!-- Main Content Section -->
     <main class="max-w-4xl mx-auto px-4 md:px-0">
         <!-- Tarjeta de Información Superior Unificada -->
-        <div class="flex flex-col sm:flex-row items-center justify-center sm:space-x-8 space-y-4 sm:space-y-0 bg-indigo-900/30 border border-indigo-500/30 rounded-2xl p-4 backdrop-blur-sm shadow-md mb-10">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-center sm:space-x-8 space-y-3 sm:space-y-0 bg-indigo-900/30 border border-indigo-500/30 rounded-2xl p-5 backdrop-blur-sm shadow-md mb-10 w-fit mx-auto">
             <div class="flex items-center space-x-3 text-indigo-200">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 <span class="font-medium text-sm sm:text-base">Sábado 19:00 hs</span>
             </div>
             <div class="hidden sm:block w-px h-6 bg-indigo-500/30"></div>
             <div class="flex items-center space-x-3 text-indigo-200">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <a href="https://www.google.com/maps/search/?api=1&query=-43.24577,-65.29282" target="_blank" class="cursor-pointer hover:scale-110 transition-transform" title="Abrir en Maps">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400 hover:text-amber-400 transition-colors"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </a>
                 <span class="font-medium text-sm sm:text-base">Roque González 369</span>
             </div>
         </div>
