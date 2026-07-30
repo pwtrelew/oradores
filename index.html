@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Fixlew</title>
     
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
@@ -12,8 +12,17 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f3f4f6; margin: 0; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; }
-        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+        /* Arquitectura "App Shell": Fija la app al viewport real para evitar que el menú se esconda */
+        body { 
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            display: flex; flex-direction: column;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background-color: #f3f4f6; 
+            margin: 0; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; 
+        }
+        
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
         .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
         .tab-content.active { display: block; }
@@ -40,7 +49,7 @@
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
     </style>
 </head>
-<body class="flex flex-col h-screen overflow-hidden text-gray-800">
+<body class="text-gray-800">
 
     <div id="splash-screen">
         <i class="ph-fill ph-wrench text-white text-6xl mb-4"></i>
@@ -73,7 +82,7 @@
             <code id="auth-domain-text" class="block bg-red-200 p-2 rounded-lg mt-2 font-mono text-center font-bold text-red-800 select-all"></code>
         </div>
 
-        <div id="tab-activos" class="tab-content active space-y-3 pb-20">
+        <div id="tab-activos" class="tab-content active space-y-3 pb-6">
             <div class="flex justify-between items-end mb-2">
                 <h2 class="text-lg font-bold text-gray-700">Trabajos en Taller</h2>
                 <span class="text-xs font-bold bg-blue-100 text-blue-600 px-2 py-1 rounded-md" id="count-activos">0</span>
@@ -81,7 +90,7 @@
             <div id="list-activos" class="space-y-3"></div>
         </div>
 
-        <div id="tab-historial" class="tab-content space-y-3 pb-20">
+        <div id="tab-historial" class="tab-content space-y-3 pb-6">
             <div class="flex justify-between items-end mb-2">
                 <h2 class="text-lg font-bold text-gray-700">Trabajos Entregados</h2>
                 <span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded-md" id="count-historial">0</span>
@@ -89,7 +98,7 @@
             <div id="list-historial" class="space-y-3"></div>
         </div>
 
-        <div id="tab-nuevo" class="tab-content max-w-lg mx-auto pb-24">
+        <div id="tab-nuevo" class="tab-content max-w-lg mx-auto pb-6">
             <h2 class="text-lg font-bold text-gray-700 mb-4">Ingresar Nuevo Equipo</h2>
             <form id="newTicketForm" class="space-y-4">
                 
@@ -177,7 +186,7 @@
             </form>
         </div>
 
-        <div id="tab-inventario" class="tab-content space-y-4 pb-24">
+        <div id="tab-inventario" class="tab-content space-y-4 pb-6">
             <div class="flex justify-between items-end mb-2">
                 <h2 class="text-lg font-bold text-gray-700">Inventario</h2>
                 <button onclick="openInventoryModal()" class="bg-blue-600 text-white px-3 py-1.5 rounded-lg text-sm font-bold shadow-md hover:bg-blue-700 active:scale-[0.95] transition flex items-center gap-1">
@@ -193,7 +202,7 @@
             <div id="list-inventario" class="grid grid-cols-2 gap-3 pb-4"></div>
         </div>
 
-        <div id="tab-clientes" class="tab-content space-y-4 pb-24">
+        <div id="tab-clientes" class="tab-content space-y-4 pb-6">
             <h2 class="text-lg font-bold text-gray-700 mb-2">Directorio de Clientes</h2>
             <div class="relative mb-3">
                 <i class="ph ph-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
@@ -202,7 +211,7 @@
             <div id="list-clientes" class="space-y-3 pb-4"></div>
         </div>
 
-        <div id="tab-resumen" class="tab-content pb-24">
+        <div id="tab-resumen" class="tab-content pb-6">
             <h2 class="text-lg font-bold text-gray-700 mb-4">Resumen Financiero</h2>
             
             <div class="flex gap-2 mb-4">
@@ -232,11 +241,11 @@
             </div>
 
             <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center gap-2"><i class="ph-fill ph-list-dashes"></i> Detalle de Trabajos (<span id="r-count-month">0</span>)</h3>
-            <div id="list-resumen-detalles" class="space-y-3"></div>
+            <div id="list-resumen-detalles" class="space-y-3 pb-8"></div>
         </div>
     </main>
 
-    <nav class="bg-white border-t border-gray-200 flex justify-between items-center pb-safe pt-1 px-1 shadow-[0_-2px_15px_rgba(0,0,0,0.03)] z-20 shrink-0 h-16">
+    <nav class="bg-white border-t border-gray-200 flex justify-between items-center pb-safe pt-1 px-1 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] z-40 shrink-0 min-h-[64px] w-full">
         <button onclick="switchTab('activos')" id="nav-activos" class="bottom-nav-item active flex-1 flex flex-col items-center p-1 text-blue-600 transition">
             <i class="ph-fill ph-wrench text-[20px] mb-0.5"></i><span class="text-[9px] font-bold">Activos</span>
         </button>
@@ -247,12 +256,11 @@
             <i class="ph-fill ph-users text-[20px] mb-0.5"></i><span class="text-[9px] font-bold">Clientes</span>
         </button>
         
-        <div class="flex-1 flex justify-center relative top-[-10px] mx-1">
+        <div class="flex flex-col items-center justify-center relative top-[-15px] mx-1">
             <button onclick="switchTab('nuevo')" id="nav-nuevo" class="bottom-nav-item flex flex-col items-center justify-center text-gray-400 transition">
-                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-[0_4px_12px_rgba(37,99,235,0.4)] active:scale-[0.95] transition">
+                <div class="bg-blue-600 text-white rounded-full w-11 h-11 flex items-center justify-center shadow-[0_4px_12px_rgba(37,99,235,0.4)] active:scale-[0.95] transition">
                     <i class="ph ph-plus text-2xl"></i>
                 </div>
-                <span class="text-[9px] mt-1 font-black text-blue-600">NUEVO</span>
             </button>
         </div>
 
@@ -413,29 +421,22 @@
                 </button>
             </div>
             
-            <div class="flex-1 overflow-y-auto p-4 space-y-3" id="cm-history-list">
-                <!-- Aquí van las tarjetas del historial -->
-            </div>
+            <div class="flex-1 overflow-y-auto p-4 space-y-3" id="cm-history-list"></div>
         </div>
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Función global para mostrar Toasts (Alertas elegantes)
         window.showToast = function(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             const icon = type === 'success' ? '<i class="ph-fill ph-check-circle text-green-400 text-lg"></i>' : '<i class="ph-fill ph-warning-circle text-red-400 text-lg"></i>';
-            toast.className = 'toast';
-            toast.innerHTML = `${icon} <span>${message}</span>`;
+            toast.className = 'toast'; toast.innerHTML = `${icon} <span>${message}</span>`;
             container.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.add('hide');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            setTimeout(() => { toast.classList.add('hide'); setTimeout(() => toast.remove(), 300); }, 3000);
         };
 
         const firebaseConfig = {
@@ -451,27 +452,19 @@
         let tickets = [], inventory = [], allClients = []; 
         let currentEditingId = null, currentStatusFilter = 'activo', currentEditingInventoryId = null;
         let currentBase64Photo = null, currentTicketBase64Photo = null;
+        let pressTimer; let isPressing = false; let currentItemToDelete = null; let currentCollectionToDelete = null;
 
-        // Variables para Long Press
-        let pressTimer; 
-        let isPressing = false;
-        let currentItemToDelete = null; 
-        let currentCollectionToDelete = null;
-
-        // Utilidades de formato
         function parseMoneyInput(val) { if (!val) return 0; let cleaned = val.toString().trim().replace(/\./g, '').replace(/,/g, '.'); return parseFloat(cleaned) || 0; }
         function formatMoney(amount) { return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(amount || 0); }
 
         function removeSplash() {
             const splash = document.getElementById('splash-screen');
-            splash.style.opacity = '0';
-            setTimeout(() => splash.style.display = 'none', 500);
+            splash.style.opacity = '0'; setTimeout(() => splash.style.display = 'none', 500);
         }
 
         try {
             app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
-            db = getFirestore(app);
+            auth = getAuth(app); db = getFirestore(app);
 
             signInAnonymously(auth).catch((error) => {
                 console.error("Auth error:", error);
@@ -482,11 +475,8 @@
                 const errText = document.getElementById('auth-domain-text');
                 errBox.classList.remove('hidden');
                 
-                if (error.code === 'auth/unauthorized-domain') {
-                    errText.innerText = window.location.hostname;
-                } else {
-                    errText.innerText = error.message;
-                }
+                if (error.code === 'auth/unauthorized-domain') { errText.innerText = window.location.hostname; } 
+                else { errText.innerText = error.message; }
                 setTimeout(removeSplash, 1000);
             });
 
@@ -494,15 +484,10 @@
                 if (user) {
                     document.getElementById('auth-error-box').classList.add('hidden');
                     document.getElementById('auth-status').innerHTML = '<i class="ph-fill ph-check-circle text-green-300"></i> En línea';
-                    loadTickets(); 
-                    loadInventory(); 
-                    removeSplash();
+                    loadTickets(); loadInventory(); removeSplash();
                 }
             });
-        } catch (error) {
-            console.error("Firebase Init Error:", error);
-            removeSplash();
-        }
+        } catch (error) { console.error("Firebase Init Error:", error); removeSplash(); }
 
         window.switchTab = (tabName) => {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
@@ -510,32 +495,24 @@
                 btn.classList.remove('text-blue-600', 'active');
                 if(btn.id !== 'nav-nuevo') btn.classList.add('text-gray-400');
             });
-            
             document.getElementById(`tab-${tabName}`).classList.add('active');
-            
             if(tabName !== 'nuevo') {
                 const activeBtn = document.getElementById(`nav-${tabName}`);
-                activeBtn.classList.remove('text-gray-400');
-                activeBtn.classList.add('text-blue-600', 'active');
+                activeBtn.classList.remove('text-gray-400'); activeBtn.classList.add('text-blue-600', 'active');
             }
         };
 
         window.startPress = function(e, id, type) {
             if (e.type === 'mousedown' && e.button !== 0) return;
             isPressing = true;
-            pressTimer = setTimeout(() => {
-                if (isPressing) showOptionsOverlay(id);
-            }, 600); // 600ms para activar
+            pressTimer = setTimeout(() => { if (isPressing) showOptionsOverlay(id); }, 600);
         };
         window.cancelPress = function() { isPressing = false; clearTimeout(pressTimer); };
         
         function showOptionsOverlay(id) {
             document.querySelectorAll('[id^="overlay-"]').forEach(el => el.classList.add('hidden'));
             const overlay = document.getElementById(`overlay-${id}`);
-            if (overlay) {
-                overlay.classList.remove('hidden');
-                if (navigator.vibrate) navigator.vibrate(50);
-            }
+            if (overlay) { overlay.classList.remove('hidden'); if (navigator.vibrate) navigator.vibrate(50); }
         }
         window.hideOverlay = function(id) {
             const overlay = document.getElementById(`overlay-${id}`);
@@ -543,19 +520,13 @@
         };
 
         window.openConfirmModal = function(id, collectionName) {
-            hideOverlay(id); 
-            currentItemToDelete = id;
-            currentCollectionToDelete = collectionName;
-            
-            const modal = document.getElementById('confirmModal');
-            const box = document.getElementById('confirmBox');
-            modal.classList.remove('hidden');
-            setTimeout(() => { modal.classList.remove('opacity-0'); box.classList.remove('scale-95'); }, 10);
+            hideOverlay(id); currentItemToDelete = id; currentCollectionToDelete = collectionName;
+            const modal = document.getElementById('confirmModal'); const box = document.getElementById('confirmBox');
+            modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); box.classList.remove('scale-95'); }, 10);
         };
 
         window.closeConfirmModal = function() {
-            const modal = document.getElementById('confirmModal');
-            const box = document.getElementById('confirmBox');
+            const modal = document.getElementById('confirmModal'); const box = document.getElementById('confirmBox');
             modal.classList.add('opacity-0'); box.classList.add('scale-95');
             setTimeout(() => { modal.classList.add('hidden'); currentItemToDelete = null; }, 200);
         };
@@ -567,39 +538,27 @@
 
             try {
                 const ref = doc(db, currentCollectionToDelete, currentItemToDelete);
-                await Promise.race([
-                    deleteDoc(ref),
-                    new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 4000))
-                ]);
+                await Promise.race([ deleteDoc(ref), new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 4000)) ]);
                 showToast("Registro eliminado correctamente");
-            } catch (err) {
-                showToast("Error al eliminar", "error");
-            } finally {
-                btn.innerHTML = 'Sí, eliminar'; btn.disabled = false;
-                closeConfirmModal();
-            }
+            } catch (err) { showToast("Error al eliminar", "error");
+            } finally { btn.innerHTML = 'Sí, eliminar'; btn.disabled = false; closeConfirmModal(); }
         });
 
         function loadTickets() {
             const ticketsRef = collection(db, 'tickets');
             onSnapshot(ticketsRef, (snapshot) => {
-                tickets = [];
-                snapshot.forEach((doc) => tickets.push({ id: doc.id, ...doc.data() }));
+                tickets = []; snapshot.forEach((doc) => tickets.push({ id: doc.id, ...doc.data() }));
                 tickets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                renderTickets();
-                calculateSummary();
-                processClients(); // Actualizar directorio de clientes automáticamente
+                renderTickets(); calculateSummary(); processClients();
             }, (error) => showToast("Error cargando trabajos", "error"));
         }
 
         function renderTickets() {
-            const listActivos = document.getElementById('list-activos');
-            const listHistorial = document.getElementById('list-historial');
+            const listActivos = document.getElementById('list-activos'); const listHistorial = document.getElementById('list-historial');
             let activosHTML = ''; let historialHTML = ''; let activosCount = 0; let historialCount = 0;
 
             tickets.forEach(t => {
-                const dateObj = new Date(t.createdAt);
-                const date = dateObj.toLocaleDateString('es-ES', {day:'2-digit', month:'short'});
+                const date = new Date(t.createdAt).toLocaleDateString('es-ES', {day:'2-digit', month:'short'});
                 const ticketNum = t.ticketNumber ? String(t.ticketNumber).padStart(3, '0') : '000';
                 const isActivo = t.status === 'activo';
                 
@@ -618,54 +577,36 @@
                                 <div class="mt-1">${isActivo ? '<span class="w-3 h-3 bg-green-500 rounded-full inline-block shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>' : '<i class="ph-fill ph-check-circle text-gray-300 text-xl"></i>'}</div>
                             </div>
                         </div>
-                        
                         <div id="overlay-${t.id}" class="hidden absolute inset-0 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center gap-6 z-10 border border-gray-200 shadow-sm">
                             <button onclick="openConfirmModal('${t.id}', 'tickets')" class="bg-red-50 text-red-600 p-3.5 rounded-full shadow-sm border border-red-100 hover:bg-red-100 transition"><i class="ph-fill ph-trash text-2xl"></i></button>
                             <button onclick="hideOverlay('${t.id}')" class="bg-gray-100 text-gray-600 p-3.5 rounded-full shadow-sm hover:bg-gray-200 transition"><i class="ph ph-x text-2xl"></i></button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
 
-                if (isActivo) { activosHTML += card; activosCount++; }
-                else { historialHTML += card; historialCount++; }
+                if (isActivo) { activosHTML += card; activosCount++; } else { historialHTML += card; historialCount++; }
             });
 
             listActivos.innerHTML = activosHTML || '<div class="text-center py-12 text-gray-400"><i class="ph-fill ph-coffee text-5xl mb-2 text-gray-200"></i><p class="text-sm font-medium">No hay trabajos activos</p></div>';
             listHistorial.innerHTML = historialHTML || '<div class="text-center py-12 text-gray-400"><p class="text-sm font-medium">Historial vacío</p></div>';
-            document.getElementById('count-activos').innerText = activosCount;
-            document.getElementById('count-historial').innerText = historialCount;
+            document.getElementById('count-activos').innerText = activosCount; document.getElementById('count-historial').innerText = historialCount;
         }
 
         function setupPhotoCompressor(inputId, previewId, placeholderId, containerId, callback) {
-            const inputEl = document.getElementById(inputId);
-            if (!inputEl) return; 
-            
+            const inputEl = document.getElementById(inputId); if (!inputEl) return; 
             inputEl.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-
+                const file = e.target.files[0]; if (!file) return;
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     const img = new Image();
                     img.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        const MAX_SIZE = 600; 
+                        const canvas = document.createElement('canvas'); const MAX_SIZE = 600; 
                         let width = img.width; let height = img.height;
-
                         if (width > height && width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; } 
                         else if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
-
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-
-                        const base64Str = canvas.toDataURL('image/jpeg', 0.6);
-                        callback(base64Str);
-                        
-                        document.getElementById(placeholderId).classList.add('hidden');
-                        const preview = document.getElementById(containerId);
-                        preview.classList.remove('hidden'); preview.classList.add('flex');
-                        document.getElementById(previewId).src = base64Str;
+                        canvas.width = width; canvas.height = height; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
+                        const base64Str = canvas.toDataURL('image/jpeg', 0.6); callback(base64Str);
+                        document.getElementById(placeholderId).classList.add('hidden'); const preview = document.getElementById(containerId);
+                        preview.classList.remove('hidden'); preview.classList.add('flex'); document.getElementById(previewId).src = base64Str;
                     }
                     img.src = event.target.result;
                 }
@@ -685,172 +626,96 @@
 
         document.getElementById('newTicketForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('btn-submit-nuevo');
-            const originalHtml = btn.innerHTML;
+            const btn = document.getElementById('btn-submit-nuevo'); const originalHtml = btn.innerHTML;
             btn.innerHTML = '<i class="ph ph-spinner animate-spin text-lg"></i> Guardando...'; btn.disabled = true;
 
             try {
                 let maxNum = 0; tickets.forEach(t => { if(t.ticketNumber > maxNum) maxNum = t.ticketNumber; });
-                
                 const newTicket = {
-                    ticketNumber: maxNum + 1,
-                    cliente: document.getElementById('f-nombre').value,
-                    tipo: document.getElementById('f-tipo').value,
-                    marca: document.getElementById('f-marca').value,
-                    modelo: document.getElementById('f-modelo').value,
-                    problema: document.getElementById('f-problema').value,
-                    precio: parseMoneyInput(document.getElementById('f-precio').value),
-                    anticipo: parseMoneyInput(document.getElementById('f-anticipo').value),
-                    costoRepuestos: parseMoneyInput(document.getElementById('f-costo').value),
-                    pagadoTotalmente: false,
-                    status: 'activo',
-                    photoBase64: currentTicketBase64Photo || "",
-                    createdAt: new Date().toISOString()
+                    ticketNumber: maxNum + 1, cliente: document.getElementById('f-nombre').value, tipo: document.getElementById('f-tipo').value,
+                    marca: document.getElementById('f-marca').value, modelo: document.getElementById('f-modelo').value, problema: document.getElementById('f-problema').value,
+                    precio: parseMoneyInput(document.getElementById('f-precio').value), anticipo: parseMoneyInput(document.getElementById('f-anticipo').value),
+                    costoRepuestos: parseMoneyInput(document.getElementById('f-costo').value), pagadoTotalmente: false, status: 'activo',
+                    photoBase64: currentTicketBase64Photo || "", createdAt: new Date().toISOString()
                 };
 
                 const ticketsRef = collection(db, 'tickets');
-                await Promise.race([
-                    addDoc(ticketsRef, newTicket),
-                    new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 4000))
-                ]);
+                await Promise.race([ addDoc(ticketsRef, newTicket), new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 4000)) ]);
                 
-                e.target.reset();
-                currentTicketBase64Photo = null;
-                document.getElementById('f-photo-placeholder').classList.remove('hidden');
-                document.getElementById('f-photo-preview-container').classList.add('hidden');
-                document.getElementById('f-ganancia-preview').innerText = "$ 0";
-                
-                showToast("¡Ingreso guardado exitosamente!");
-                switchTab('activos');
-            } catch (err) {
-                showToast("Error al guardar en la nube", "error");
-            } finally {
-                btn.innerHTML = originalHtml; btn.disabled = false;
-            }
+                e.target.reset(); currentTicketBase64Photo = null;
+                document.getElementById('f-photo-placeholder').classList.remove('hidden'); document.getElementById('f-photo-preview-container').classList.add('hidden');
+                document.getElementById('f-ganancia-preview').innerText = "$ 0"; showToast("¡Ingreso guardado exitosamente!"); switchTab('activos');
+            } catch (err) { showToast("Error al guardar en la nube", "error"); } finally { btn.innerHTML = originalHtml; btn.disabled = false; }
         });
 
         window.openModal = (id) => {
-            const ticket = tickets.find(t => t.id === id);
-            if (!ticket) return;
-            
-            currentEditingId = id;
-            currentStatusFilter = ticket.status;
+            const ticket = tickets.find(t => t.id === id); if (!ticket) return;
+            currentEditingId = id; currentStatusFilter = ticket.status;
             
             document.getElementById('m-title').innerText = `Ticket #${String(ticket.ticketNumber || 0).padStart(3, '0')}`;
-            document.getElementById('m-cliente').innerText = ticket.cliente;
-            document.getElementById('m-equipo').innerText = `${ticket.tipo} ${ticket.marca} ${ticket.modelo}`;
+            document.getElementById('m-cliente').innerText = ticket.cliente; document.getElementById('m-equipo').innerText = `${ticket.tipo} ${ticket.marca} ${ticket.modelo}`;
             document.getElementById('m-falla').innerText = ticket.problema;
             document.getElementById('m-fecha').innerText = new Date(ticket.createdAt).toLocaleDateString('es-ES', {weekday:'short', day:'2-digit', month:'short', year:'numeric'});
             
-            const photoContainer = document.getElementById('m-photo-container');
-            const photoImg = document.getElementById('m-photo');
-            if(ticket.photoBase64) {
-                photoImg.src = ticket.photoBase64;
-                photoContainer.classList.remove('hidden');
-            } else {
-                photoContainer.classList.add('hidden');
-            }
+            const photoContainer = document.getElementById('m-photo-container'); const photoImg = document.getElementById('m-photo');
+            if(ticket.photoBase64) { photoImg.src = ticket.photoBase64; photoContainer.classList.remove('hidden'); } else { photoContainer.classList.add('hidden'); }
 
-            document.getElementById('m-costo').value = ticket.costoRepuestos || 0;
-            document.getElementById('m-precio').value = ticket.precio || 0;
-            document.getElementById('m-anticipo').value = ticket.anticipo || 0;
-            
-            const pagadoCheckbox = document.getElementById('m-pagado');
-            pagadoCheckbox.checked = ticket.pagadoTotalmente || false;
+            document.getElementById('m-costo').value = ticket.costoRepuestos || 0; document.getElementById('m-precio').value = ticket.precio || 0;
+            document.getElementById('m-anticipo').value = ticket.anticipo || 0; document.getElementById('m-pagado').checked = ticket.pagadoTotalmente || false;
 
-            updateRestaModal();
-            updateStatusButtons();
-
-            const modal = document.getElementById('ticketModal');
-            const content = document.getElementById('modalContent');
-            modal.classList.remove('hidden');
-            setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('translate-y-full'); }, 10);
+            updateRestaModal(); updateStatusButtons();
+            const modal = document.getElementById('ticketModal'); const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('translate-y-full'); }, 10);
         };
 
         window.closeModal = () => {
-            const modal = document.getElementById('ticketModal');
-            const content = document.getElementById('modalContent');
-            modal.classList.add('opacity-0'); content.classList.add('translate-y-full');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-            currentEditingId = null;
+            const modal = document.getElementById('ticketModal'); const content = document.getElementById('modalContent');
+            modal.classList.add('opacity-0'); content.classList.add('translate-y-full'); setTimeout(() => modal.classList.add('hidden'), 300); currentEditingId = null;
         };
 
-        window.setModalStatus = (status) => {
-            currentStatusFilter = status;
-            updateStatusButtons();
-        };
+        window.setModalStatus = (status) => { currentStatusFilter = status; updateStatusButtons(); };
 
         function updateStatusButtons() {
-            const btnAct = document.getElementById('btn-status-activo');
-            const btnEnt = document.getElementById('btn-status-entregado');
+            const btnAct = document.getElementById('btn-status-activo'); const btnEnt = document.getElementById('btn-status-entregado');
             btnAct.className = `flex-1 py-2 rounded-lg transition font-bold ${currentStatusFilter === 'activo' ? 'bg-blue-100 text-blue-700 shadow-sm' : 'text-gray-400'}`;
             btnEnt.className = `flex-1 py-2 rounded-lg transition font-bold ${currentStatusFilter === 'entregado' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-400'}`;
         }
 
         function updateRestaModal() {
-            const p = parseMoneyInput(document.getElementById('m-precio').value);
-            const a = parseMoneyInput(document.getElementById('m-anticipo').value);
+            const p = parseMoneyInput(document.getElementById('m-precio').value); const a = parseMoneyInput(document.getElementById('m-anticipo').value);
             document.getElementById('m-resta').innerText = formatMoney(Math.max(0, p - a));
         }
-        
         ['m-precio', 'm-anticipo', 'm-costo'].forEach(i => document.getElementById(i).addEventListener('input', updateRestaModal));
 
-        document.getElementById('m-pagado').addEventListener('change', (e) => {
-            if(e.target.checked) {
-                setModalStatus('entregado');
-                showToast("Estado cambiado a Entregado");
-            }
-        });
+        document.getElementById('m-pagado').addEventListener('change', (e) => { if(e.target.checked) { setModalStatus('entregado'); showToast("Estado cambiado a Entregado"); } });
 
         document.getElementById('saveModalBtn').addEventListener('click', async (e) => {
             if (!currentEditingId) return;
-            const btn = e.currentTarget;
-            const originalText = btn.innerHTML;
+            const btn = e.currentTarget; const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="ph ph-spinner animate-spin text-xl"></i> Guardando...'; btn.disabled = true;
 
             try {
                 const isDeliveredNow = (currentStatusFilter === 'entregado');
-                let updateData = {
-                    costoRepuestos: parseMoneyInput(document.getElementById('m-costo').value),
-                    precio: parseMoneyInput(document.getElementById('m-precio').value),
-                    anticipo: parseMoneyInput(document.getElementById('m-anticipo').value),
-                    pagadoTotalmente: document.getElementById('m-pagado').checked,
-                    status: currentStatusFilter
+                let updateData = { costoRepuestos: parseMoneyInput(document.getElementById('m-costo').value), precio: parseMoneyInput(document.getElementById('m-precio').value),
+                    anticipo: parseMoneyInput(document.getElementById('m-anticipo').value), pagadoTotalmente: document.getElementById('m-pagado').checked, status: currentStatusFilter
                 };
-                
-                if (isDeliveredNow) {
-                    const ticket = tickets.find(t => t.id === currentEditingId);
-                    if(!ticket.deliveredAt) updateData.deliveredAt = new Date().toISOString();
-                }
-
+                if (isDeliveredNow) { const ticket = tickets.find(t => t.id === currentEditingId); if(!ticket.deliveredAt) updateData.deliveredAt = new Date().toISOString(); }
                 const docRef = doc(db, 'tickets', currentEditingId);
-                await Promise.race([
-                    updateDoc(docRef, updateData),
-                    new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 4000))
-                ]);
-                showToast("Cambios guardados");
-                closeModal();
-            } catch (err) {
-                showToast("Error al guardar", "error");
-            } finally {
-                btn.innerHTML = originalText; btn.disabled = false;
-            }
+                await Promise.race([ updateDoc(docRef, updateData), new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 4000)) ]);
+                showToast("Cambios guardados"); closeModal();
+            } catch (err) { showToast("Error al guardar", "error"); } finally { btn.innerHTML = originalText; btn.disabled = false; }
         });
 
         function loadInventory() {
             const inventoryRef = collection(db, 'inventory');
             onSnapshot(inventoryRef, (snapshot) => {
-                inventory = []; 
-                snapshot.forEach((doc) => inventory.push({ id: doc.id, ...doc.data() }));
-                inventory.sort((a, b) => a.name.localeCompare(b.name));
-                renderInventory(inventory);
+                inventory = []; snapshot.forEach((doc) => inventory.push({ id: doc.id, ...doc.data() }));
+                inventory.sort((a, b) => a.name.localeCompare(b.name)); renderInventory(inventory);
             });
         }
 
         document.getElementById('search-inventario').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = inventory.filter(item => item.name.toLowerCase().includes(term));
-            renderInventory(filtered);
+            const term = e.target.value.toLowerCase(); const filtered = inventory.filter(item => item.name.toLowerCase().includes(term)); renderInventory(filtered);
         });
 
         function renderInventory(itemsToRender) {
@@ -871,7 +736,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div id="overlay-${item.id}" class="hidden absolute inset-0 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center gap-4 z-10 border border-gray-200 shadow-sm">
                             <button onclick="openEditInventory('${item.id}')" class="bg-blue-50 text-blue-600 p-3 rounded-full shadow-sm border border-blue-100"><i class="ph-fill ph-pencil-simple text-xl"></i></button>
                             <button onclick="openConfirmModal('${item.id}', 'inventory')" class="bg-red-50 text-red-600 p-3 rounded-full shadow-sm border border-red-100"><i class="ph-fill ph-trash text-xl"></i></button>
@@ -888,43 +752,27 @@
         };
 
         window.openInventoryModal = () => {
-            currentEditingInventoryId = null;
-            currentBase64Photo = null;
+            currentEditingInventoryId = null; currentBase64Photo = null;
             document.getElementById('inv-modal-title').innerHTML = '<i class="ph-fill ph-box-cube text-blue-600"></i> Nuevo Repuesto';
-            document.getElementById('inventoryForm').reset();
-            resetInventoryPhotoUI();
-            
-            showInvModal();
+            document.getElementById('inventoryForm').reset(); resetInventoryPhotoUI(); showInvModal();
         };
 
         window.openEditInventory = (id) => {
-            hideOverlay(id);
-            const item = inventory.find(i => i.id === id); if(!item) return;
-            
-            currentEditingInventoryId = id;
-            document.getElementById('inv-modal-title').innerHTML = '<i class="ph-fill ph-pencil-simple text-blue-600"></i> Editar Repuesto';
-            
-            document.getElementById('i-name').value = item.name;
-            document.getElementById('i-quantity').value = item.quantity;
-            document.getElementById('i-cost').value = item.cost || 0;
-            
+            hideOverlay(id); const item = inventory.find(i => i.id === id); if(!item) return;
+            currentEditingInventoryId = id; document.getElementById('inv-modal-title').innerHTML = '<i class="ph-fill ph-pencil-simple text-blue-600"></i> Editar Repuesto';
+            document.getElementById('i-name').value = item.name; document.getElementById('i-quantity').value = item.quantity; document.getElementById('i-cost').value = item.cost || 0;
             currentBase64Photo = item.photoBase64 || null;
             if(currentBase64Photo) {
                 document.getElementById('i-photo-placeholder').classList.add('hidden');
-                const preview = document.getElementById('i-photo-preview-container');
-                preview.classList.remove('hidden'); preview.classList.add('flex');
+                const preview = document.getElementById('i-photo-preview-container'); preview.classList.remove('hidden'); preview.classList.add('flex');
                 document.getElementById('i-photo-preview').src = currentBase64Photo;
-            } else {
-                resetInventoryPhotoUI();
-            }
-            
+            } else { resetInventoryPhotoUI(); }
             showInvModal();
         };
 
         function resetInventoryPhotoUI() {
             document.getElementById('i-photo-placeholder').classList.remove('hidden');
-            document.getElementById('i-photo-preview-container').classList.add('hidden');
-            document.getElementById('i-photo-preview-container').classList.remove('flex');
+            document.getElementById('i-photo-preview-container').classList.add('hidden'); document.getElementById('i-photo-preview-container').classList.remove('flex');
         }
 
         function showInvModal() {
@@ -934,92 +782,62 @@
 
         window.closeInventoryModal = () => {
             const m = document.getElementById('inventoryModal'); const c = document.getElementById('inventoryModalContent');
-            m.classList.add('opacity-0'); c.classList.add('translate-y-full');
-            setTimeout(() => m.classList.add('hidden'), 300);
+            m.classList.add('opacity-0'); c.classList.add('translate-y-full'); setTimeout(() => m.classList.add('hidden'), 300);
         };
 
         document.getElementById('saveInventoryBtn').addEventListener('click', async (e) => {
-            const name = document.getElementById('i-name').value.trim();
-            if(!name) return showToast("Falta nombre", "error");
-
+            const name = document.getElementById('i-name').value.trim(); if(!name) return showToast("Falta nombre", "error");
             const btn = e.currentTarget; const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="ph ph-spinner animate-spin text-xl"></i> Guardando...'; btn.disabled = true;
 
-            const data = {
-                name: name, quantity: parseInt(document.getElementById('i-quantity').value) || 0,
-                cost: parseMoneyInput(document.getElementById('i-cost').value),
-                photoBase64: currentBase64Photo || ""
-            };
+            const data = { name: name, quantity: parseInt(document.getElementById('i-quantity').value) || 0, cost: parseMoneyInput(document.getElementById('i-cost').value), photoBase64: currentBase64Photo || "" };
 
             try {
-                const prom = currentEditingInventoryId ? 
-                    updateDoc(doc(db, 'inventory', currentEditingInventoryId), data) : 
-                    addDoc(collection(db, 'inventory'), { ...data, dateAdded: new Date().toISOString() });
-                
+                const prom = currentEditingInventoryId ? updateDoc(doc(db, 'inventory', currentEditingInventoryId), data) : addDoc(collection(db, 'inventory'), { ...data, dateAdded: new Date().toISOString() });
                 await Promise.race([prom, new Promise((_, rej) => setTimeout(() => rej(new Error("timeout")), 4000))]);
-                
-                showToast("Repuesto guardado");
-                closeInventoryModal();
+                showToast("Repuesto guardado"); closeInventoryModal();
             } catch (err) { showToast("Error al guardar", "error"); } finally { btn.innerHTML = originalText; btn.disabled = false; }
         });
 
         function populateSummarySelectors() {
-            const mesSelect = document.getElementById('r-mes');
-            const anoSelect = document.getElementById('r-ano');
+            const mesSelect = document.getElementById('r-mes'); const anoSelect = document.getElementById('r-ano');
             const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
             mesSelect.innerHTML = meses.map((m, i) => `<option value="${i}">${m}</option>`).join('');
-            
             const currentYear = new Date().getFullYear();
             anoSelect.innerHTML = [currentYear-1, currentYear, currentYear+1].map(y => `<option value="${y}">${y}</option>`).join('');
-            
             mesSelect.value = new Date().getMonth(); anoSelect.value = currentYear;
             mesSelect.addEventListener('change', calculateSummary); anoSelect.addEventListener('change', calculateSummary);
         }
 
         function calculateSummary() {
-            const mesObj = parseInt(document.getElementById('r-mes').value);
-            const anoObj = parseInt(document.getElementById('r-ano').value);
+            const mesObj = parseInt(document.getElementById('r-mes').value); const anoObj = parseInt(document.getElementById('r-ano').value);
             document.getElementById('lbl-ano-actual').innerText = anoObj;
-            
-            let totalMesIngresos = 0, totalMesGastos = 0, totalAnual = 0;
-            let trabajosDelMes = [];
+            let totalMesIngresos = 0, totalMesGastos = 0, totalAnual = 0; let trabajosDelMes = [];
 
             tickets.forEach(t => {
                 if (t.status === 'entregado') {
                     const date = new Date(t.deliveredAt || t.createdAt);
                     const ingreso = t.pagadoTotalmente ? (t.precio || 0) : (t.anticipo || 0);
-                    const gasto = (t.costoRepuestos || 0);
-                    const ganancia = ingreso - gasto;
+                    const gasto = (t.costoRepuestos || 0); const ganancia = ingreso - gasto;
 
                     if (date.getFullYear() === anoObj) {
                         totalAnual += ganancia; 
-                        
-                        if (date.getMonth() === mesObj) {
-                            totalMesIngresos += ingreso;
-                            totalMesGastos += gasto;
-                            trabajosDelMes.push({ ...t, gananciaNeta: ganancia, fechaFin: date });
-                        }
+                        if (date.getMonth() === mesObj) { totalMesIngresos += ingreso; totalMesGastos += gasto; trabajosDelMes.push({ ...t, gananciaNeta: ganancia, fechaFin: date }); }
                     }
                 }
             });
 
-            document.getElementById('r-ingresos').innerText = formatMoney(totalMesIngresos);
-            document.getElementById('r-gastos').innerText = formatMoney(totalMesGastos);
-            document.getElementById('r-ganancia').innerText = formatMoney(totalMesIngresos - totalMesGastos);
-            document.getElementById('r-anual').innerText = formatMoney(totalAnual);
+            document.getElementById('r-ingresos').innerText = formatMoney(totalMesIngresos); document.getElementById('r-gastos').innerText = formatMoney(totalMesGastos);
+            document.getElementById('r-ganancia').innerText = formatMoney(totalMesIngresos - totalMesGastos); document.getElementById('r-anual').innerText = formatMoney(totalAnual);
             document.getElementById('r-count-month').innerText = trabajosDelMes.length;
-
             renderDetallesResumen(trabajosDelMes);
         }
 
         function renderDetallesResumen(trabajos) {
-            const list = document.getElementById('list-resumen-detalles');
-            let html = '';
-            
+            const list = document.getElementById('list-resumen-detalles'); let html = '';
             trabajos.sort((a,b) => b.fechaFin - a.fechaFin).forEach(t => {
                 const fIngreso = new Date(t.createdAt).toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit', year:'2-digit'});
                 const fFin = t.fechaFin.toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit', year:'2-digit'});
-                
                 html += `
                 <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex flex-col text-sm relative overflow-hidden">
                     <div class="flex justify-between items-start mb-2">
@@ -1027,17 +845,13 @@
                             <span class="font-bold text-gray-800">${t.cliente}</span>
                             <span class="block text-[11px] text-gray-500">${t.tipo} ${t.marca}</span>
                         </div>
-                        <span class="font-black text-green-600 bg-green-50 px-2 py-1 rounded-lg border border-green-100 text-right">
-                            + ${formatMoney(t.gananciaNeta)}
-                        </span>
+                        <span class="font-black text-green-600 bg-green-50 px-2 py-1 rounded-lg border border-green-100 text-right">+ ${formatMoney(t.gananciaNeta)}</span>
                     </div>
                     <div class="flex justify-between items-center text-[10px] text-gray-400 mt-1 border-t border-gray-50 pt-2 font-medium">
-                        <span>Ingresó: ${fIngreso}</span>
-                        <span>Entregado: ${fFin}</span>
+                        <span>Ingresó: ${fIngreso}</span><span>Entregado: ${fFin}</span>
                     </div>
                 </div>`;
             });
-            
             list.innerHTML = html || '<div class="text-center py-6 text-gray-400 text-xs font-medium">No se registran entregas este mes.</div>';
         }
 
@@ -1045,98 +859,68 @@
             const clientMap = new Map();
             tickets.forEach(t => {
                 if (!t.cliente) return;
-                const name = t.cliente.trim();
-                const key = name.toLowerCase();
-                if (!clientMap.has(key)) {
-                    clientMap.set(key, { name: name, tickets: [] });
-                }
+                const name = t.cliente.trim(); const key = name.toLowerCase();
+                if (!clientMap.has(key)) { clientMap.set(key, { name: name, tickets: [] }); }
                 clientMap.get(key).tickets.push(t);
             });
-            
-            allClients = Array.from(clientMap.values()).sort((a, b) => a.name.localeCompare(b.name));
-            renderClientes(allClients);
+            allClients = Array.from(clientMap.values()).sort((a, b) => a.name.localeCompare(b.name)); renderClientes(allClients);
         }
 
         document.getElementById('search-clientes').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = allClients.filter(c => c.name.toLowerCase().includes(term));
-            renderClientes(filtered);
+            const term = e.target.value.toLowerCase(); const filtered = allClients.filter(c => c.name.toLowerCase().includes(term)); renderClientes(filtered);
         });
 
         function renderClientes(clientsToRender) {
-            const list = document.getElementById('list-clientes');
-            let html = '';
+            const list = document.getElementById('list-clientes'); let html = '';
             clientsToRender.forEach(c => {
                 const numTickets = c.tickets.length;
                 html += `
                     <div onclick="openClientModal('${c.name}')" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between active:scale-[0.98] transition cursor-pointer select-none">
                         <div class="flex items-center gap-3">
-                            <div class="bg-blue-50 text-blue-600 w-11 h-11 rounded-full flex items-center justify-center font-black text-lg border border-blue-100 uppercase">
-                                ${c.name.charAt(0)}
-                            </div>
+                            <div class="bg-blue-50 text-blue-600 w-11 h-11 rounded-full flex items-center justify-center font-black text-lg border border-blue-100 uppercase">${c.name.charAt(0)}</div>
                             <div>
                                 <h3 class="font-bold text-gray-800 text-sm leading-tight">${c.name}</h3>
-                                <p class="text-[11px] text-gray-500 font-medium mt-0.5">${numTickets} ${numTickets === 1 ? 'reparación' : 'reparaciones registradas'}</p>
+                                <p class="text-[11px] text-gray-500 font-medium mt-0.5">${numTickets} ${numTickets === 1 ? 'reparación' : 'reparaciones'}</p>
                             </div>
                         </div>
                         <i class="ph ph-caret-right text-gray-400 text-xl"></i>
-                    </div>
-                `;
+                    </div>`;
             });
             list.innerHTML = html || '<div class="text-center py-12 text-gray-400"><i class="ph-fill ph-users text-5xl mb-2 text-gray-200"></i><p class="text-sm font-medium">Directorio vacío</p></div>';
         }
 
         window.openClientModal = (clientName) => {
-            const clientData = allClients.find(c => c.name === clientName);
-            if (!clientData) return;
-            
+            const clientData = allClients.find(c => c.name === clientName); if (!clientData) return;
             document.getElementById('cm-nombre').innerText = clientData.name;
-            
             let historyHtml = '';
             const sortedTickets = clientData.tickets.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
-            
             sortedTickets.forEach(t => {
                 const isEntregado = t.status === 'entregado';
                 const fIngreso = new Date(t.createdAt).toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit', year:'2-digit'});
-                let fFin = 'En taller';
-                if (isEntregado) {
-                    fFin = t.deliveredAt ? new Date(t.deliveredAt).toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit', year:'2-digit'}) : 'Entregado';
-                }
+                let fFin = 'En taller'; if (isEntregado) { fFin = t.deliveredAt ? new Date(t.deliveredAt).toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit', year:'2-digit'}) : 'Entregado'; }
                 
-                const statusBadge = isEntregado 
-                    ? `<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest border border-green-200">Entregado</span>`
-                    : `<span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest border border-blue-200">En Taller</span>`;
+                const statusBadge = isEntregado ? `<span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest border border-green-200">Entregado</span>` : `<span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-widest border border-blue-200">En Taller</span>`;
                     
                 historyHtml += `
                     <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm relative">
                         <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <span class="font-bold text-gray-800 block text-sm">${t.tipo} ${t.marca} ${t.modelo}</span>
-                                <span class="text-xs text-gray-500 font-medium flex items-center gap-1 mt-1"><i class="ph-fill ph-warning-circle text-red-400"></i> ${t.problema}</span>
-                            </div>
+                            <div><span class="font-bold text-gray-800 block text-sm">${t.tipo} ${t.marca} ${t.modelo}</span><span class="text-xs text-gray-500 font-medium flex items-center gap-1 mt-1"><i class="ph-fill ph-warning-circle text-red-400"></i> ${t.problema}</span></div>
                             ${statusBadge}
                         </div>
                         <div class="flex justify-between items-center text-[10px] text-gray-400 mt-3 pt-2 border-t border-gray-50 font-bold uppercase tracking-wider">
                             <span class="flex items-center gap-1"><i class="ph ph-calendar-plus text-sm"></i> ${fIngreso}</span>
                             <span class="flex items-center gap-1">${isEntregado ? `<i class="ph ph-calendar-check text-sm text-green-500"></i> ${fFin}` : ''}</span>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
-            
             document.getElementById('cm-history-list').innerHTML = historyHtml;
-            
-            const m = document.getElementById('clientModal');
-            const c = document.getElementById('clientModalContent');
-            m.classList.remove('hidden');
-            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('translate-y-full'); }, 10);
+            const m = document.getElementById('clientModal'); const c = document.getElementById('clientModalContent');
+            m.classList.remove('hidden'); setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('translate-y-full'); }, 10);
         }
         
         window.closeClientModal = () => {
-            const m = document.getElementById('clientModal');
-            const c = document.getElementById('clientModalContent');
-            m.classList.add('opacity-0'); c.classList.add('translate-y-full');
-            setTimeout(() => m.classList.add('hidden'), 300);
+            const m = document.getElementById('clientModal'); const c = document.getElementById('clientModalContent');
+            m.classList.add('opacity-0'); c.classList.add('translate-y-full'); setTimeout(() => m.classList.add('hidden'), 300);
         }
 
         populateSummarySelectors();
