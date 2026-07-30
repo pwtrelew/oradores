@@ -12,14 +12,10 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
-        /* Arquitectura "App Shell": Fija la app al viewport real para evitar que el menú se esconda */
         body { 
-            position: fixed; 
-            top: 0; left: 0; right: 0; bottom: 0; 
-            display: flex; flex-direction: column;
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-            background-color: #f3f4f6; 
-            margin: 0; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; 
+            margin: 0; 
+            -webkit-tap-highlight-color: transparent; 
         }
         
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
@@ -49,7 +45,7 @@
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 bg-gray-50">
 
     <div id="splash-screen">
         <i class="ph-fill ph-wrench text-white text-6xl mb-4"></i>
@@ -60,7 +56,7 @@
 
     <div id="toast-container"></div>
 
-    <header class="bg-blue-600 text-white p-4 shadow-md z-10 shrink-0 pt-safe flex justify-between items-center">
+    <header class="fixed top-0 left-0 right-0 bg-blue-600 text-white p-4 shadow-md z-40 pt-safe flex justify-between items-center h-[64px]">
         <div>
             <h1 class="text-xl font-bold flex items-center gap-2">
                 <i class="ph-fill ph-wrench"></i> Fixlew
@@ -74,10 +70,11 @@
         </button>
     </header>
 
-    <main class="flex-1 overflow-y-auto bg-gray-50 p-4 relative">
+    <!-- mt-[64px] empuja el contenido debajo del header, mb-[90px] deja espacio para que nada se esconda tras el menu -->
+    <main class="w-full relative p-4 mt-[64px] mb-[90px]">
         
         <div id="auth-error-box" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl mb-4 shadow-sm text-sm">
-            <p class="font-bold mb-1"><i class="ph-fill ph-warning-circle"></i> Seguridad de Firebase</p>
+            <p class="font-bold mb-1"><i class="ph-fill ph-warning-circle"></i> Dominio no autorizado</p>
             <p>La base de datos bloqueó la conexión. Ve a Firebase > Authentication > Configuración > <b>Dominios autorizados</b> y agrega exactamente esto:</p>
             <code id="auth-domain-text" class="block bg-red-200 p-2 rounded-lg mt-2 font-mono text-center font-bold text-red-800 select-all"></code>
         </div>
@@ -245,7 +242,8 @@
         </div>
     </main>
 
-    <nav class="bg-white border-t border-gray-200 flex justify-between items-center pb-safe pt-1 px-1 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] z-40 shrink-0 min-h-[64px] w-full">
+    <!-- ESTA ES LA MAGIA: position: fixed ancla la barra abajo, pase lo que pase -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-between items-center pb-safe pt-1 px-1 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] z-40 min-h-[64px]">
         <button onclick="switchTab('activos')" id="nav-activos" class="bottom-nav-item active flex-1 flex flex-col items-center p-1 text-blue-600 transition">
             <i class="ph-fill ph-wrench text-[20px] mb-0.5"></i><span class="text-[9px] font-bold">Activos</span>
         </button>
@@ -272,7 +270,7 @@
         </button>
     </nav>
 
-    <div id="ticketModal" class="fixed inset-0 bg-black/60 z-[50] hidden opacity-0 flex flex-col justify-end pointer-events-none transition-opacity duration-200">
+    <div id="ticketModal" class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 flex flex-col justify-end pointer-events-none transition-opacity duration-200">
         <div id="modalContent" class="bg-gray-50 w-full rounded-t-3xl h-[85vh] flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto">
             
             <div class="flex justify-between items-center p-4 border-b bg-white shrink-0 rounded-t-3xl shadow-sm">
