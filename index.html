@@ -1,1 +1,258 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oradores</title>
+    <!-- Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para la fuente Poppins y el fondo del body */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-slate-300 antialiased pb-20 font-sans selection:bg-amber-500/30">
+    
+    <!-- Header Section -->
+    <header class="text-center pt-20 pb-12 px-4 relative max-w-4xl mx-auto">
+        <!-- Botón superior derecho -->
+        <div class="absolute top-6 right-4 md:right-0">
+            <div class="flex items-center space-x-2 bg-slate-800/80 backdrop-blur-md border border-slate-700/50 text-slate-200 py-2 px-4 rounded-full shadow-lg text-sm font-medium cursor-default">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Cong. Norte</span>
+            </div>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-3">Oradores</h1>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="max-w-4xl mx-auto px-4 md:px-0">
+        <!-- Tarjeta de Información Superior Unificada -->
+        <div class="flex flex-row items-center justify-center space-x-3 sm:space-x-8 bg-indigo-900/30 border border-indigo-500/30 rounded-2xl p-4 sm:p-5 backdrop-blur-sm shadow-md mb-10 w-fit mx-auto whitespace-nowrap overflow-x-auto max-w-full">
+            <div class="flex items-center space-x-2 sm:space-x-3 text-indigo-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400 sm:w-5 sm:h-5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span class="font-medium text-xs sm:text-base">Sábado 19:00 hs</span>
+            </div>
+            <div class="w-px h-5 sm:h-6 bg-indigo-500/30"></div>
+            <div class="flex items-center space-x-2 sm:space-x-3 text-indigo-200">
+                <a href="https://www.google.com/maps/search/?api=1&query=-43.24577,-65.29282" target="_blank" class="cursor-pointer hover:scale-110 transition-transform" title="Abrir en Maps">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400 hover:text-amber-400 transition-colors sm:w-5 sm:h-5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </a>
+                <span class="font-medium text-xs sm:text-base">Roque González 369</span>
+            </div>
+        </div>
+
+        <!-- Contenedor de tarjetas de oradores -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Tarjeta de Orador 1 -->
+            <div class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:bg-slate-800/50 hover:border-slate-600 md:col-span-2 lg:col-span-1">
+                <div class="flex items-center space-x-3 mb-5 border-b border-slate-700/50 pb-4">
+                    <div class="p-2 bg-slate-900 rounded-lg border border-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <h2 class="text-lg font-bold text-white leading-tight">Darío Ferrin</h2>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">ANC</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="mostrarTitulo(32)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">32</button>
+                    <button onclick="mostrarTitulo(40)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">40</button>
+                    <button onclick="mostrarTitulo(45)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">45</button>
+                    <button onclick="mostrarTitulo(54)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">54</button>
+                    <button onclick="mostrarTitulo(84)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">84</button>
+                    <button onclick="mostrarTitulo(103)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">103</button>
+                    <button onclick="mostrarTitulo(105)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">105</button>
+                    <button onclick="mostrarTitulo(118)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">118</button>
+                    <button onclick="mostrarTitulo(151)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">151</button>
+                    <button onclick="mostrarTitulo(154)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">154</button>
+                    <button onclick="mostrarTitulo(162)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">162</button>
+                    <button onclick="mostrarTitulo(163)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">163</button>
+                    <button onclick="mostrarTitulo(192)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">192</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Orador 2 -->
+            <div class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:bg-slate-800/50 hover:border-slate-600">
+                <div class="flex items-center space-x-3 mb-5 border-b border-slate-700/50 pb-4">
+                    <div class="p-2 bg-slate-900 rounded-lg border border-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <h2 class="text-lg font-bold text-white leading-tight">Pablo Ferrin</h2>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">ANC</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="mostrarTitulo(191)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">191</button>
+                    <button onclick="mostrarTitulo(4)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">4</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Orador 3 -->
+            <div class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:bg-slate-800/50 hover:border-slate-600">
+                <div class="flex items-center space-x-3 mb-5 border-b border-slate-700/50 pb-4">
+                    <div class="p-2 bg-slate-900 rounded-lg border border-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <h2 class="text-lg font-bold text-white leading-tight">Enzo Buonomo</h2>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">ANC</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="mostrarTitulo(40)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">40</button>
+                    <button onclick="mostrarTitulo(78)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">78</button>
+                    <button onclick="mostrarTitulo(111)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">111</button>
+                    <button onclick="mostrarTitulo(175)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">175</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Orador Nuevo: Ariel Rivas -->
+            <div class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:bg-slate-800/50 hover:border-slate-600">
+                <div class="flex items-center space-x-3 mb-5 border-b border-slate-700/50 pb-4">
+                    <div class="p-2 bg-slate-900 rounded-lg border border-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <h2 class="text-lg font-bold text-white leading-tight">Ariel Rivas</h2>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">ANC</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="mostrarTitulo(4)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">4</button>
+                    <button onclick="mostrarTitulo(9)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">9</button>
+                    <button onclick="mostrarTitulo(97)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">97</button>
+                    <button onclick="mostrarTitulo(164)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">164</button>
+                    <button onclick="mostrarTitulo(185)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">185</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Orador 5 -->
+            <div class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:bg-slate-800/50 hover:border-slate-600">
+                <div class="flex items-center space-x-3 mb-5 border-b border-slate-700/50 pb-4">
+                    <div class="p-2 bg-slate-900 rounded-lg border border-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <h2 class="text-lg font-bold text-white leading-tight">Jorge Rapiman</h2>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">ANC</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="mostrarTitulo(3)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">3</button>
+                    <button onclick="mostrarTitulo(32)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">32</button>
+                    <button onclick="mostrarTitulo(113)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">113</button>
+                    <button onclick="mostrarTitulo(132)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">132</button>
+                    <button onclick="mostrarTitulo(152)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">152</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Orador 6 -->
+            <div class="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 backdrop-blur-md shadow-xl transition-all duration-300 hover:bg-slate-800/50 hover:border-slate-600 md:col-span-2 lg:col-span-1">
+                <div class="flex items-center space-x-3 mb-5 border-b border-slate-700/50 pb-4">
+                    <div class="p-2 bg-slate-900 rounded-lg border border-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex items-baseline space-x-2">
+                        <h2 class="text-lg font-bold text-white leading-tight">Esteban García</h2>
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">SM</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="mostrarTitulo(4)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">4</button>
+                    <button onclick="mostrarTitulo(8)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">8</button>
+                    <button onclick="mostrarTitulo(113)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">113</button>
+                    <button onclick="mostrarTitulo(189)" class="px-3 py-1.5 bg-slate-900 border border-slate-700/80 rounded-md text-sm font-medium text-slate-300 hover:bg-amber-400 hover:text-slate-900 hover:border-amber-400 transition-all duration-200 shadow-sm">189</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="mt-16 text-center px-4">
+        <p class="mb-4 text-slate-400 text-sm">Por favor, enviar las imágenes y el número de la canción a :</p>
+        <!-- Botón de Marcelo Mugueta modernizado -->
+        <a class="inline-flex items-center justify-center space-x-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 py-3 px-6 rounded-full shadow-lg hover:bg-emerald-500 hover:text-slate-900 transition-all duration-300 font-semibold group no-underline"
+           href="https://wa.me/5492804977396" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <span>Marcelo Mugueta</span>
+        </a>
+    </footer>
+
+    <!-- Modal (La caja de mensaje que aparecerá al tocar un número) -->
+    <div id="modal-titulo" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center z-50 px-4 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-700 p-8 rounded-3xl max-w-sm w-full shadow-2xl relative overflow-hidden">
+            <!-- Barra decorativa superior -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+            
+            <div class="flex items-center space-x-3 mb-4 text-amber-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <h2 class="text-xl font-bold tracking-tight" id="numero-discurso">Discurso</h2>
+            </div>
+            <p id="texto-discurso" class="mb-8 text-lg font-medium text-slate-200 leading-snug"></p>
+            <button onclick="cerrarModal()" class="w-full bg-slate-200 text-slate-900 font-bold py-3 rounded-xl hover:bg-amber-400 transition-colors shadow-md">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Scripts de interactividad (JavaScript) -->
+    <script>
+        // Diccionario con los números y sus respectivos títulos extraídos del PDF
+        const titulos = {
+            3: "Sirva con la organización unificada de Jehová",
+            4: "El mundo que nos rodea prueba que Dios existe",
+            8: "Vivamos para hacer la voluntad de Dios, no la nuestra",
+            9: "Nunca se haga sordo a la Palabra de Dios",
+            15: "\"Hagamos el bien a todos\"",
+            32: "Cómo enfrentarse a las inquietudes de la vida",
+            40: "¿Qué sucederá en el futuro cercano?",
+            45: "Sigamos el camino que lleva a la vida",
+            54: "Tenga fe en Dios y sus promesas",
+            78: "Sirva a Jehová con alegría",
+            84: "¿Escapará usted de lo que le espera a este mundo?",
+            97: "Permanezcamos sin culpa en medio de una generación torcida",
+            103: "Cómo ser verdaderamente felices",
+            105: "Cómo obtener consuelo en toda tribulación",
+            111: "La humanidad recuperará la salud por completo",
+            113: "Joven, ¿cómo puedes ser feliz y tener éxito?",
+            118: "Veamos a los jóvenes como los ve Jehová",
+            132: "La resurrección: una victoria sobre la muerte",
+            151: "Jehová es \"una altura segura\" para su pueblo",
+            152: "¿Cuándo y por qué vendrá el verdadero Armagedón?",
+            154: "El gobierno del hombre, pesado en la balanza",
+            162: "Liberados de un mundo de oscuridad",
+            163: "¿Por qué temer al Dios verdadero?",
+            164: "¿Sigue Dios ejerciendo la soberanía sobre la Tierra?",
+            175: "¿Qué pruebas demuestran la autenticidad de la Biblia?",
+            185: "¿Gobernará alguna vez la verdad en la Tierra?",
+            189: "Andar con Dios nos beneficia ahora y para siempre",
+            191: "Cómo vencen al mundo la fe y el amor",
+            192: "¿Anda usted por el camino que lleva a la vida eterna?"
+        };
+
+        // Función para abrir el modal
+        function mostrarTitulo(numero) {
+            const titulo = titulos[numero] || "Título no disponible";
+            document.getElementById('numero-discurso').innerText = "Discurso " + numero;
+            document.getElementById('texto-discurso').innerText = titulo;
+            
+            const modal = document.getElementById('modal-titulo');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Función para cerrar el modal
+        function cerrarModal() {
+            const modal = document.getElementById('modal-titulo');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
